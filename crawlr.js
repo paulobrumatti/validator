@@ -14,7 +14,7 @@ const main = async (urls, { headless = true } = {}) => {
     page.on('requestfinished', requestHandlerBuilder(requests));
     await page.setViewport({ width: 1368, height: 766 });
     await page.goto(url, { waitUntil: 'networkidle0' });
-    await handler(simulatorBuilder(page));
+    await handler(simulatorBuilder(page, requests));
     await page.waitFor(2000);
     await page.close();
 
