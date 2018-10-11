@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.3",
-    "puppeteer": "^1.2.0"
+    "express": "^4.16.4",
+    "puppeteer": "^1.9.0"
   },
   "devDependencies": {},
   "scripts": {
