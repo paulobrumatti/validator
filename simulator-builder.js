@@ -1,9 +1,9 @@
-const simulatorBuilder = page => ({
+const simulatorBuilder = (page) => ({
   page,
   event,
   click,
   input,
-  delay: ms => page.waitFor(ms)
+  delay: (ms) => page.waitForTimeout(ms),
 });
 
 const event = async function ({
@@ -11,7 +11,7 @@ const event = async function ({
   event,
   text,
   delay,
-  button = 'right'
+  button = 'right',
 }) {
   try {
     if (event === 'mousedown') {
@@ -20,8 +20,8 @@ const event = async function ({
       await this.page.type(selector, text, { delay });
       await this.page.evaluate('document.activeElement.blur()');
     }
-    await this.page.waitFor(500);
-  } catch ($$e) {};
+    await this.page.waitForTimeout(500);
+  } catch ($$e) {}
 };
 
 const click = async function (selector, opts = selector) {
@@ -29,7 +29,7 @@ const click = async function (selector, opts = selector) {
     event: 'mousedown',
     selector,
     button: 'right',
-    ...opts
+    ...opts,
   });
 };
 
@@ -39,7 +39,7 @@ const input = async function (selector, opts = selector) {
     selector,
     text: 't ex to',
     delay: 10,
-    ...opts
+    ...opts,
   });
 };
 
