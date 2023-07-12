@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "puppeteer": "^11.0.0"
+    "puppeteer": "^20.8.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

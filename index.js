@@ -3,26 +3,20 @@ const crawlr = require('./crawlr.js');
 crawlr(
   [
     {
-      url: 'https://www.dp6.com.br/servicos/mesas-salas-de-performance/',
+      url: 'https://beta.stage2.drogasil.com.br/',
       handler: async (simulator) => {
-        await simulator.click('a[href="https://blog.dp6.com.br/"]');
-        await simulator.input(
-          '.elementor-form-fields-wrapper > div.elementor-field-group > textarea'
-        );
+        console.log(JSON.stringify(await simulator.getDataLayer('promotionView')));
+        console.log(JSON.stringify(await simulator.getDataLayer('impressionViews')));
+       // simulator.click('.produtos a')
       },
-    },
-    {
-      url: 'http://autos.dp6.com.br/',
+    },{
+      url: 'https://beta.stage2.drogasil.com.br/carmed-protetor-labial-fini-beijos-com-cor-10g.html',
       handler: async (simulator) => {
-        await simulator.click('.menu-lista-download');
+        console.log(JSON.stringify(await simulator.getDataLayer('promotionView')));
+        console.log(JSON.stringify(await simulator.getDataLayer('impressionViews')));
+       // simulator.click('.produtos a')
       },
-    },
-    {
-      url: 'http://autos.dp6.com.br/analise_setorial.html',
-      handler: async (simulator) => {
-        await simulator.click('.card-montadoras[data-name="Volkswagen"]');
-      },
-    },
+    }
   ],
   { headless: false }
 )
