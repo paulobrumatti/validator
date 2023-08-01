@@ -1,30 +1,34 @@
-const crawlr = require('./crawlr.js');
+const crawlr = require("./crawlr.js");
 
-crawlr(
-  [
-    {
-      url: 'https://beta.stage2.drogasil.com.br/',
-      handler: async (simulator) => {
-        console.log(JSON.stringify(await simulator.getDataLayer('promotionView')));
-        console.log(JSON.stringify(await simulator.getDataLayer('impressionViews')));
-       // simulator.click('.produtos a')
-      },
-    },{
-      url: 'https://beta.stage2.drogasil.com.br/carmed-protetor-labial-fini-beijos-com-cor-10g.html',
-      handler: async (simulator) => {
-        console.log(JSON.stringify(await simulator.getDataLayer('promotionView')));
-        console.log(JSON.stringify(await simulator.getDataLayer('impressionViews')));
-       // simulator.click('.produtos a')
-      },
-    }
-  ],
-  { headless: false }
-)
+crawlr([
+  {
+    url: "https://www.dp6.com.br/servicos/mesas-salas-de-performance/",
+    handler: async (simulator) => {
+      await simulator.click('a[href="https://blog.dp6.com.br/"]');
+      await simulator.input(
+        ".elementor-form-fields-wrapper > div.elementor-field-group > textarea"
+      );
+    },
+  },
+  {
+    url: "http://autos.dp6.com.br/",
+    handler: async (simulator) => {
+      await simulator.click(".menu-lista-download");
+    },
+  },
+  {
+    url: "http://autos.dp6.com.br/analise_setorial.html",
+    handler: async (simulator) => {
+      await simulator.click('.card-montadoras[data-name="Volkswagen"]');
+    },
+  },
+  { headless: false },
+])
   .then(({ duration, results }) => {
     console.log(`A execução levou ${duration / 1000}s`);
 
     results.forEach(({ url, requests }) => {
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@');
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@");
       console.log(`${url}: ${requests.length}`);
       requests.forEach((req) => console.log(req));
     });
